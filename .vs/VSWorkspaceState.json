@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\pages",
+    "\\pages\\categories",
+    "\\_includes"
   ],
-  "SelectedNode": "\\_config.yml",
+  "SelectedNode": "\\_includes\\nav_list_main",
   "PreviewInSolutionExplorer": false
 }
