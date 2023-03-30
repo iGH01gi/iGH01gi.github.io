@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\pages",
     "\\pages\\categories",
-    "\\_includes"
+    "\\_data",
+    "\\_posts"
   ],
-  "SelectedNode": "\\_includes\\nav_list_main",
+  "SelectedNode": "\\_posts\\2023-03-12-first.md",
   "PreviewInSolutionExplorer": false
 }
