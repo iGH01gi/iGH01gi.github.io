@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\pages",
-    "\\pages\\categories",
     "\\_data",
-    "\\_includes"
+    "\\_includes",
+    "\\_layouts",
+    "\\_posts"
   ],
-  "SelectedNode": "\\_includes\\search",
   "PreviewInSolutionExplorer": false
 }

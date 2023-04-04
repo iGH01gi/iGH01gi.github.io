@@ -4,6 +4,7 @@
 
 
 <nav class="nav__list">
+<script src="https://kit.fontawesome.com/11f59feb26.js" crossorigin="anonymous"></script>
   <style>.nav__sub-title {font-size: 20px;}</style>
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
@@ -14,7 +15,7 @@
       </li>
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-        <span class="nav__sub-title">C/C++/C#</span>
+       <span class="nav__sub-title"><i class="fa-solid fa-book"></i> C/C++/C#</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
@@ -25,7 +26,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">게임 엔진</span>
+        <span class="nav__sub-title"><i class="fa-solid fa-gamepad"></i> 게임 엔진</span>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "unity" %}
@@ -40,8 +41,7 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title">서버</span>
-     
+        <span class="nav__sub-title"><i class="fa-solid fa-server"></i> 서버</span> 
       </li>
   </ul>
 </nav>
