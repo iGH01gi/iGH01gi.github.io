@@ -105,7 +105,7 @@ analytics:
 # Site Author
 author:
   name             : "이건호"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : /assets/images/setting/ighRabbit.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "백엔드개발자 지망생(주로 게임서버)"
   #location         : "South Korea"
   email            : "iGH01pr@outlook.com"
@@ -125,6 +125,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/iGH01gi"
+    - label: "티스토리"
+      icon: "fa-solid fa-link"
+      url: "https://igh01ti.tistory.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"

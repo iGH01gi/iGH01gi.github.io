@@ -15,7 +15,7 @@
       </li>
       <li>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-       <span class="nav__sub-title"><i class="fa-solid fa-book"></i> C/C++/C#</span>
+       <span class="nav__sub-title"><i class="far fa-keyboard"></i> C/C++/C#</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
@@ -42,6 +42,14 @@
                 {% endfor %}
             </ul>
         <span class="nav__sub-title"><i class="fa-solid fa-server"></i> 서버</span> 
+        <span class="nav__sub-title"><i class="fa-solid fa-book"></i> CS </span>
+         <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "os" %}
+                        <li><a href="/categories/os" class="">운영체제({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
       </li>
   </ul>
 </nav>
