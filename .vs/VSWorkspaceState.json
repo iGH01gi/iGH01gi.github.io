@@ -1,10 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
     "\\assets\\images",
     "\\assets\\images\\setting",
-    "\\assets\\js"
+    "\\assets\\js",
+    "\\pages",
+    "\\_data",
+    "\\_posts",
+    "\\_posts\\cpp",
+    "\\_posts\\os",
+    "\\_posts\\unity"
   ],
+  "SelectedNode": "\\pages\\search.md",
   "PreviewInSolutionExplorer": false
 }
