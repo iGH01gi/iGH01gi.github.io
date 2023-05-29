@@ -3,8 +3,13 @@
     "",
     "\\assets",
     "\\assets\\images",
-    "\\assets\\images\\setting",
-    "\\assets\\js"
+    "\\images",
+    "\\pages",
+    "\\pages\\categories",
+    "\\_posts",
+    "\\_posts\\cpp",
+    "\\_posts\\os",
+    "\\_posts\\unity"
   ],
   "PreviewInSolutionExplorer": false
 }
