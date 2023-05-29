@@ -1,12 +1,12 @@
 ---
 title: "유니티 엔진"
 layout: archive
-permalink: categories/unity
+permalink: categories/Unity
 author_profile: true
 sidebar_main: true
 ---
 <!-- 공백이 포함되어 있는 카테고리 이름의 경우 site.categories.['a b c'] 이런식으로! -->
 
 ***
-{% assign posts = site.categories.unity %}
+{% assign posts = site.categories.Unity %}
 {% for post in posts %} {% include archive-single2.html type=page.entries_layout %} {% endfor %}

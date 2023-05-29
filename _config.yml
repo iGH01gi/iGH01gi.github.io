@@ -108,11 +108,8 @@ author:
   avatar           : /assets/images/setting/ighRabbit.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "게임서버 개발자(진)"
   #location         : "South Korea"
-  email            : "iGH01pr@outlook.com"
+  #email            : "iGH01pr@outlook.com"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      #url: "iGH01pr@outlook.com"
     - label: "Website"
       icon: "fas fa-fw fa-link"
       # url: "https://your-website.com"
@@ -125,14 +122,15 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/iGH01gi"
-    - label: "티스토리"
+    - label: "Tistory"
       icon: "fa-solid fa-link"
       url: "https://igh01ti.tistory.com/"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       # url: "https://instagram.com/"
-    - label: "tistory"
-      icon: 
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:iGH01pr@outlook.com"
 
 # Site Footer
 footer:

@@ -2,7 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\images",
-    "\\_sass"
+    "\\pages",
+    "\\pages\\categories",
+    "\\_posts",
+    "\\_posts\\cpp",
+    "\\_posts\\git",
+    "\\_posts\\os"
   ],
+  "SelectedNode": "\\pages\\categories\\category-git.md",
   "PreviewInSolutionExplorer": false
 }
