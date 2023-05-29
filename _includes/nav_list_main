@@ -5,24 +5,34 @@
 
 <nav class="nav__list">
 <script src="https://kit.fontawesome.com/11f59feb26.js" crossorigin="anonymous"></script>
-  <style>.nav__sub-title {font-size: 20px;}</style>
+  <style>.nav__sub-title {font-size: 20px; color: #fff}</style>
+  <style>.nav__sub-title-link{font-size: 16px; color: #fff}</style>
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
   <ul class="nav__items" id="category_tag_menu">
       <!--전체 글 수-->
       <li>
-            📂 <span style="font-size: 14px;">전체 글 수 '{{sum}}' 개</span> 
+            📂 <span style="font-size: 17px;">Total '{{sum}}' posts</span> 
       </li>
       <li>
+      <span class="nav__sub-title"><i class="fa-solid fa-book"></i> CS </span>
+         <ul>
+                {% for category in site.categories %}
+                    {% if category[0] == "os" %}
+                        <li><a href="/categories/os" class="nav__sub-title-link">운영체제({{category[1].size}})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+       <span class="nav__sub-title"><i class="fa-solid fa-server"></i> 서버</span> 
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
-       <span class="nav__sub-title"><i class="far fa-keyboard"></i> C/C++/C#</span>
+       <span class="nav__sub-title"><i class="far fa-keyboard"></i> 언어</span>
             <!--ul 태그로 같은 카테고리들 모아둔 페이지들 나열-->
             <ul>
                 <!--Cpp 카테고리 글들을 모아둔 페이지인 /categories/cpp 주소의 글로 링크 연결-->
                 <!--category[1].size 로 해당 카테고리를 가진 글의 개수 표시--> 
                 {% for category in site.categories %}
                     {% if category[0] == "cpp" %}
-                        <li><a href="/categories/cpp" class="">C ++ ({{category[1].size}})</a></li>
+                        <li><a href="/categories/cpp" class="nav__sub-title-link">C ++ ({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
@@ -30,26 +40,19 @@
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "unity" %}
-                        <li><a href="/categories/unity" class="">유니티 엔진({{category[1].size}})</a></li>
+                        <li><a href="/categories/unity" class="nav__sub-title-link">유니티 엔진({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
             <ul>
                 {% for category in site.categories %}
                     {% if category[0] == "unreal" %}
-                        <li><a href="/categories/unreal" class="">({{category[1].size}})</a></li>
+                        <li><a href="/categories/unreal" class="nav__sub-title-link">({{category[1].size}})</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
-        <span class="nav__sub-title"><i class="fa-solid fa-server"></i> 서버</span> 
-        <span class="nav__sub-title"><i class="fa-solid fa-book"></i> CS </span>
-         <ul>
-                {% for category in site.categories %}
-                    {% if category[0] == "os" %}
-                        <li><a href="/categories/os" class="">운영체제({{category[1].size}})</a></li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+        
+        
       </li>
   </ul>
 </nav>

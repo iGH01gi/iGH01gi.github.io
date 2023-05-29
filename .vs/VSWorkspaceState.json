@@ -1,15 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
-    "\\assets\\images",
     "\\images",
-    "\\pages",
-    "\\pages\\categories",
-    "\\_posts",
-    "\\_posts\\cpp",
-    "\\_posts\\os",
-    "\\_posts\\unity"
+    "\\_sass"
   ],
   "PreviewInSolutionExplorer": false
 }

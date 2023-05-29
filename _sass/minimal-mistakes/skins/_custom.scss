@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Dark skin
+   ========================================================================== */
+
+/* Colors */
+$background-color: #222222 !default;  //배경색
+$text-color: #fff !default; //글자색
+$primary-color: #00adb5 !default; //포인트 색
+$border-color: mix(#fff, $background-color, 20%) !default;  //테두리 색
+$code-background-color: mix(#000, $background-color, 15%) !default;
+$code-background-color-dark: mix(#000, $background-color, 20%) !default;
+$form-background-color: mix(#000, $background-color, 15%) !default;
+$footer-background-color: mix(#000, $background-color, 30%) !default; // footer 배경색
+$link-color: mix($primary-color, $text-color, 40%) !default; // 게시물 글자색
+$link-color-hover: mix(#fff, $link-color, 25%) !default; // 포인터 올렸을 때 글자색
+$link-color-visited: mix(#000, $link-color, 25%) !default;
+$masthead-link-color: $text-color !default; // 상단링크 글자색
+$masthead-link-color-hover: mix(#000, $text-color, 20%) !default;  // 포인터 올렸을 때 글자색
+$navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
+
+.author__urls.social-icons i,
+.author__urls.social-icons .svg-inline--fa,
+.page__footer-follow .social-icons i,
+.page__footer-follow .social-icons .svg-inline--fa {
+    color: inherit;
+}
+
+.ais-search-box .ais-search-box--input {
+    background-color: $form-background-color;
+}

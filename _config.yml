@@ -12,7 +12,7 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "neon" #"default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "custom" #"default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "ko-KR"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "이건호"
   avatar           : /assets/images/setting/ighRabbit.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "백엔드개발자 지망생(주로 게임서버)"
+  bio              : "게임서버 개발자(진)"
   #location         : "South Korea"
   email            : "iGH01pr@outlook.com"
   links:
