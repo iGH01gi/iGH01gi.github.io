@@ -7,8 +7,10 @@
     "\\_posts",
     "\\_posts\\cpp",
     "\\_posts\\git",
-    "\\_posts\\os"
+    "\\_posts\\os",
+    "\\_sass",
+    "\\_sass\\minimal-mistakes"
   ],
-  "SelectedNode": "\\pages\\categories\\category-git.md",
+  "SelectedNode": "\\_sass\\minimal-mistakes\\_base.scss",
   "PreviewInSolutionExplorer": false
 }
