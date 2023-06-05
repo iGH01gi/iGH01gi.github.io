@@ -1,16 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\images",
     "\\pages",
-    "\\pages\\categories",
     "\\_posts",
-    "\\_posts\\cpp",
-    "\\_posts\\git",
-    "\\_posts\\os",
-    "\\_sass",
-    "\\_sass\\minimal-mistakes"
+    "\\_sass"
   ],
-  "SelectedNode": "\\_sass\\minimal-mistakes\\_sidebar.scss",
   "PreviewInSolutionExplorer": false
 }
