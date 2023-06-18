@@ -269,4 +269,4 @@ int main()
 ![image]()
 ```
 
-![ighRabbit](./2023-06-05-GitBlogTip/ighRabbit-1687104307711-26.png)
+![ighRabbit](../images/2023-06-05-GitBlogTip/ighRabbit.png)
