@@ -269,4 +269,4 @@ int main()
 ![image]()
 ```
 
-![깃허브 - 무료 브랜드 및 로고개 아이콘](2023-06-05-GitBlogTip/5968866.png)
+![ighRabbit](./2023-06-05-GitBlogTip/ighRabbit-1687104307711-26.png)
