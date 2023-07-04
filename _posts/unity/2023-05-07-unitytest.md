@@ -1,7 +1,7 @@
 ---
 title: 유니티글
 
-categories: unity
+categories: Unity
 
 toc: true
 toc_sticky: true

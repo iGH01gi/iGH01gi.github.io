@@ -1,3 +1,13 @@
+<!-- 카테고리 상세페이지 표시방식 -->
+
+<!-- 날짜 카테고리 사이의 여백용 -->
+<style>
+    .space {
+        margin-left: 5px;
+    }
+</style>
+
+
 {% if post.header.teaser %}
   {% capture teaser %}{{ post.header.teaser }}{% endcapture %}
 {% else %}
@@ -18,10 +28,13 @@
             </span>
             <small>
                 <i class="fas fa-fw fa-calendar-alt" aria-hidden="true"> </i>{{ post.date | date: " %Y.%m.%d" }}
-                {% if site.category_archive.type and post.categories[0] and site.tag_archive.type and post.tags[0] %}
+
+                <span class="space"></span>
+
                 {%- include post__taxonomy.html -%}
-                {% endif %}
+
             </small>
         </div>
     </article>
 </div>
+
