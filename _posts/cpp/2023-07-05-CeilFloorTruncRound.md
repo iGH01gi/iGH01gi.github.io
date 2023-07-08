@@ -18,7 +18,7 @@ last_modified_at: 2023-07-05
 
 <br>
 
-2023-07-05
+
 
 ## 올림(ceil)
 
@@ -28,7 +28,9 @@ float ceil (float x);
 long double ceil (long double x);
 ```
 
-사용 예시:
+<br>
+
+사용 예
 
 ```c++
 cout<<ceil(2.1); //결과:3
@@ -47,7 +49,9 @@ float floor (float x);
 long double floor (long double x);
 ```
 
-사용 예시:
+<br>
+
+사용 예
 
 ```c++
 cout<<floor(2.1); //결과:2
@@ -67,7 +71,9 @@ long double trunc(long double num);
 double trunc(T num);
 ```
 
-사용 예시:
+<br>
+
+사용 예
 
 ```c++
 cout<<trunc(2.1) //결과:2
@@ -95,7 +101,9 @@ long double round(long double num);
 double round(T x);
 ```
 
-사용 예시:
+<br>
+
+사용 예
 
 ```c++
 cout<<round(2.1);	//결과:2
