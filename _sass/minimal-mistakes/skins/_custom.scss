@@ -5,10 +5,10 @@
 /* Colors */
 $background-color: #222222 !default;  //배경색
 $text-color: #fff !default; //글자색
-$primary-color: #00adb5 !default; //포인트 색
-$border-color: mix(#fff, $background-color, 20%) !default;  //테두리 색
-$code-background-color: mix(#000, $background-color, 15%) !default;
-$code-background-color-dark: mix(#000, $background-color, 20%) !default;
+$primary-color: #00adb5 !default; //포인트 색 (toc에서 on this page영향받는거 확인)
+$border-color: mix(#fff, $background-color, 20%) !default;  //테두리 색 
+$code-background-color: mix(#fff, $background-color, 30%) !default; //인라인코드 배경색인듯. ' '로 둘러쌓인 박스
+$code-background-color-dark: mix(#fff, $background-color, 30%) !default; //인라인코드 배경색인듯. ' '로 둘러쌓인 박스
 $form-background-color: mix(#000, $background-color, 15%) !default;
 $footer-background-color: mix(#000, $background-color, 30%) !default; // footer 배경색
 $link-color: mix($primary-color, $text-color, 40%) !default; // 게시물 글자색
