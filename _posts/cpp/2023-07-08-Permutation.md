@@ -1,5 +1,5 @@
 ---
-title: "[C++]  순열 구하기 (std::next_permutation, std::prev_permutation)"
+title: "[C++] 순열 구하기 (std::next_permutation, std::prev_permutation)"
 categories: Cpp
 toc: true
 toc_sticky: true
@@ -151,10 +151,10 @@ std::prev_permutation은 역사전순으로 정렬
 *CAB*  
 *CBA*  
 
-이렇게 나옵니다. 
+이렇게 나옴. 
 
  
 
-std::prev_permutation은 똑같은 상황이지만 역순으로 정렬인것만 알면 되겠습니다.
+std::prev_permutation은 똑같은 상황이지만 역순으로 정렬인것만 알면 됨.
 
-(B,C,A를 prev_permutation하면 BCA, BAC, ACB, ABC 순으로 결과를 뱉습니다.)
+(B,C,A를 prev_permutation하면 BCA, BAC, ACB, ABC 순으로 결과를 뱉음.)
