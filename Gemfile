@@ -22,7 +22,10 @@ gem "minimal-mistakes-jekyll"
 #   gem "jekyll-gist"
 #   gem "jekyll-feed"
 #   gem "jekyll-include-cache"
-#
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+
 # If you have any other plugins, put them here!
 # Cf. https://jekyllrb.com/docs/plugins/installation/
 group :jekyll_plugins do
