@@ -75,7 +75,24 @@ cin.ignore();
 getline(cin, str);
 ```
 
-`cin.ignore()` 를 사용해서 입력 버퍼의 모든 내용을 제거해주면 정상적으로 작동함.
+`cin.ignore()` 를 사용해서 입력 버퍼의 모든 내용을 제거해주면 정상적으로 작동함
+
+```c++
+string str;
+string newStr;
+
+getline(cin, str, ',');
+cout << str << endl;
+
+cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+cin >> newStr;
+cout << newStr;
+```
+
+그리고 `cin.ignore()` 는 버퍼 전체를 비우는 것이 아닌, 하나만 비우는 것으로 추정됨.
+
+따라서 버퍼 전체를 비우려면 `cin.ignore(numeric_limits<streamsize>::max(),'\n')` 를 사용해서 마지막 엔터까지의 모든 버퍼를 비워줘야함.
 
 <br>
 
