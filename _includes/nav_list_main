@@ -21,6 +21,9 @@
                     {% if category[0] == "Os" %}
                         <li><a href="/categories/Os" class="nav__sub-title-link">운영체제({{category[1].size}})</a></li>
                     {% endif %}
+                    {% if category[0] == "Db" %}
+                        <li><a href="/categories/Db" class="nav__sub-title-link">DB({{category[1].size}})</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
        <span class="nav__sub-title"><i class="fa-solid fa-server"></i> Backend</span> 
