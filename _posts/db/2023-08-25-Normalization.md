@@ -6,8 +6,8 @@ toc_sticky: true
 //author_profile: false 왼쪽에 따라다니는거 키고끄기
 layout: single
 show_Date: true
-date: 2023-08-23
-last_modified_at: 2023-08-23
+date: 2023-08-24
+last_modified_at: 2023-08-24
 ---
 
 ## 정규화란?
