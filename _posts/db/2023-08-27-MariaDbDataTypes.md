@@ -71,3 +71,5 @@ timestamp는 데이터 입출력시 time_zone 시스템 변수 값을 체크해 
 ## 기타 데이터 유형
 
 ![image-20230827070430965](./../../assets/images/2023-08-27-MariaDbDataTypes/image-20230827070430965.png)
+
+- enum타입도 존재함
