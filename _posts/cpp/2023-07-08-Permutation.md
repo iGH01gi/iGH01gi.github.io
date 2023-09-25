@@ -158,3 +158,54 @@ std::prev_permutation은 역사전순으로 정렬
 std::prev_permutation은 똑같은 상황이지만 역순으로 정렬인것만 알면 됨.
 
 (B,C,A를 prev_permutation하면 BCA, BAC, ACB, ABC 순으로 결과를 뱉음.)
+
+<br>
+
+
+
+## 주의할 점 2
+
+do while문을 이용하면, next_permutation과 prev_permutation이 끝까지 간 담에, 정 반대의 값으로 변하면서 false를 내뱉음.
+
+즉, ABC로 시작한것을 do-while문을 사용하여 next_permutation을 진행한다면 최종적으로 저장된것은 CBA임을 확인할 수 있음. 
+
+``` c++
+    vector <char> v1 = { 'A','B','C' };
+    vector <char> v2 = { 'B','C','A' };
+
+
+    do
+    {
+        for (auto x : v1)cout << x;
+        cout << "\n";
+    } while (next_permutation(v1.begin(), v1.end()));//계속해서 정렬
+    /* 출력값
+    	ABC
+	ACB
+	BAC
+	BCA
+	CAB
+	CBA
+    */
+    cout<<"\n";
+    for (auto x : v2)cout << x;
+    cout<<endl;
+    //출력 : CBA
+
+    do
+    {
+        for (auto x : v2)cout << x;
+        cout << "\n";
+    } while (prev_permutation(v2.begin(), v2.end()));//계속해서 정렬
+    /* 출력값
+    BCA
+    BAC
+    ACB
+    ABC
+    */
+
+    cout<<"\n";
+    for (auto x : v2)cout << x;
+    //출력 : CBA
+```
+
