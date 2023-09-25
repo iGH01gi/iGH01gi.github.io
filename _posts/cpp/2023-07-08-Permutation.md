@@ -167,13 +167,15 @@ std::prev_permutation은 똑같은 상황이지만 역순으로 정렬인것만 
 
 do while문을 이용하면, next_permutation과 prev_permutation이 끝까지 간 담에, 정 반대의 값으로 변하면서 false를 내뱉음.
 
-즉, ABC로 시작한것을 do-while문을 사용하여 next_permutation을 진행한다면 최종적으로 저장된것은 CBA임을 확인할 수 있음. 
+즉, ABC로 시작한것을 do-while문을 사용하여 next_permutation을 진행한다면 CBA까지 간 뒤에 정 반대의 값인 ABC로 변하면서 끝나지만,
+
+BCA로 시작한것을 do-while문을 사용하여 prev_permutation을 진행하면 ABC까지 간 뒤에 정 반대의 값인 CBA로 변하면서 끝남. 
 
 ``` c++
     vector <char> v1 = { 'A','B','C' };
     vector <char> v2 = { 'B','C','A' };
 
-
+/**********************************************************************/
     do
     {
         for (auto x : v1)cout << x;
@@ -188,10 +190,12 @@ do while문을 이용하면, next_permutation과 prev_permutation이 끝까지 �
 	CBA
     */
     cout<<"\n";
-    for (auto x : v2)cout << x;
+    for (auto x : v1)cout << x;
     cout<<endl;
-    //출력 : CBA
+    //출력 : ABC
 
+
+/**********************************************************************/
     do
     {
         for (auto x : v2)cout << x;
