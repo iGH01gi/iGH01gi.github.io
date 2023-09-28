@@ -6,8 +6,8 @@ toc_sticky: true
 //author_profile: false 왼쪽에 따라다니는거 키고끄기
 layout: single
 show_Date: true
-date: 2023-08-25
-last_modified_at: 2023-08-25
+date: 2023-08-22
+last_modified_at: 2023-08-22
 ---
 
 > 이미지는 [Database System Concepts](https://db-book.com/) 7판의 이미지를 사용함.
