@@ -23,7 +23,7 @@ vector<int> v = { 0,1,2 };
 auto itr=v.begin();
 
 itr=next(itr,2);
-cout<<*itr; //1출력됨
+cout<<*itr; //2출력됨
 ```
 
 <br>
@@ -45,7 +45,7 @@ vector<int> v = { 0,1,2 };
 auto itr=v.end();
 
 itr=prev(itr,2);
-cout<<*itr; //0출력됨
+cout<<*itr; //1출력됨
 ```
 
 <br>
