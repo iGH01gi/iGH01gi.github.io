@@ -3,8 +3,9 @@
     "",
     "\\pages",
     "\\pages\\categories",
-    "\\_posts"
+    "\\_posts",
+    "\\_posts\\network"
   ],
-  "SelectedNode": "\\_posts\\db",
+  "SelectedNode": "\\_posts\\network\\2023-09-27-Et.md",
   "PreviewInSolutionExplorer": false
 }

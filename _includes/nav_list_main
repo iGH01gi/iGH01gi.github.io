@@ -24,6 +24,9 @@
                     {% if category[0] == "Db" %}
                         <li><a href="/categories/Db" class="nav__sub-title-link">DB({{category[1].size}})</a></li>
                     {% endif %}
+                    {% if category[0] == "Network" %}
+                        <li><a href="/categories/Network" class="nav__sub-title-link">네트워크({{category[1].size}})</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
        <span class="nav__sub-title"><i class="fa-solid fa-server"></i> Backend</span> 
