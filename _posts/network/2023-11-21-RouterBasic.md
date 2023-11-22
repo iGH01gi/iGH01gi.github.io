@@ -36,7 +36,8 @@ last_modified_at: 2023-11-21
   - 라우팅 알고리즘은 자신의 라우팅 테이블을 가지고 있으며, 자기가 찾아갈 경로에 대한 정보를 이곳에 기억해둠
   - RIP(Routing Information Protocol), IGRP(Interior Gateway Routing Protocol), OSPF(Open Shortest Path First), EIGRP(Enhanced Interior Gateway Routing Protocol)등이 여기에 해당 (이 종류들은 전부 다이내믹 라우팅 프로토콜임)
   - **스태틱 라우팅 프로토콜** 과 **다이내믹 라우팅 프로토콜**로 구분됨
-  - **(IGP, Interior Gateway Protocol)** 와 **(EGP, Exterior Gateway Protocol)**로 구분됨
+  - 다이내믹 라우팅 프로토콜은 **(IGP, Interior Gateway Protocol)** 와 **(EGP, Exterior Gateway Protocol)**로 구분됨
+  - 다이내믹 라우팅 프로토콜은 라우팅 테이블을 유지관리하는 방식에 따라서 **디스턴스 벡터 알고리즘(Distance Vector Algorithm)**과 **링크 스테이트 알고리즘(Link State Algorithm)**으로 구분됨
 
 <br>
 

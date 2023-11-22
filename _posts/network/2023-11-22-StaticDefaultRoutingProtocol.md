@@ -6,8 +6,8 @@ toc_sticky: true
 //author_profile: false 왼쪽에 따라다니는거 키고끄기
 layout: single
 show_Date: true
-date: 2023-11-21
-last_modified_at: 2023-11-21
+date: 2023-11-22
+last_modified_at: 2023-11-22
 ---
 
 # <span style="color: #D6ABFA;">⚪스태틱 라우팅 프로토콜?</span>
