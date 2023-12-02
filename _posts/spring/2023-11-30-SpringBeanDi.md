@@ -138,7 +138,7 @@ public class SpringConfig {
 }
 ```
 
-클래스 위에 @Configuration 어노테이션을 쓰고, 각 스프링빈 생성자에 
+클래스 위에 @Configuration 어노테이션을 쓰고, 각 스프링빈 생성자에 @Bean을 적어줌
 
 MemberService와 MemberRepository를 설정한 예시
 
