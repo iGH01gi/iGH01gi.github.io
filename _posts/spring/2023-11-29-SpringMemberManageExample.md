@@ -1,5 +1,5 @@
 ---
-title: "[Spring] 스프링 입문 - 3.회원 관리 예제"
+title: "[Spring] 스프링 입문 - 3.회원 관리 예제(백엔드 개발)"
 categories: Spring
 toc: true
 toc_sticky: true
