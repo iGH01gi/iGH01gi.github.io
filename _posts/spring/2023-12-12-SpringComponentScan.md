@@ -6,8 +6,8 @@ toc_sticky: true
 //author_profile: false 왼쪽에 따라다니는거 키고끄기
 layout: single
 show_Date: true
-date: 2023-12-11
-last_modified_at: 2023-12-11
+date: 2023-12-12
+last_modified_at: 2023-12-12
 ---
 
 <a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8" target="_blank">
@@ -303,7 +303,6 @@ FilterType은 5가지 옵션이 있다
 ```
 
 <div class="notice--warning" markdown="1">
-
 **참고**   
 
 **@Component** 면 충분하기 때문에, **includeFilters** 를 사용할 일은 거의 없다. 
