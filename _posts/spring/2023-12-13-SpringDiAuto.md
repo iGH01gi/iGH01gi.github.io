@@ -229,3 +229,354 @@ setNoBean3 = Optional.empty
 
 ## 🔹누락
 
+```java
+public class OrderServiceImpl implements OrderService {
+    
+     private MemberRepository memberRepository;
+     private DiscountPolicy discountPolicy;
+    
+     @Autowired
+     public void setMemberRepository(MemberRepository memberRepository) {
+     	this.memberRepository = memberRepository;
+     }
+    
+     @Autowired
+     public void setDiscountPolicy(DiscountPolicy discountPolicy) {
+     	this.discountPolicy = discountPolicy;
+     }
+     //...
+}
+```
+
+- 수정자 주입을 사용할 경우, @Autowired 가 프레임워크 안에서 동작할 때는 의존관계가 없으면 오류가 발생하지만,  프레임워크 없이 순수한 자바 코드로만 단위 테스트를 할떄는 NPE가 발생할 가능성이 큼
+- 반면 생성자 주입의 경우에는, 컴파일 오류가 발생하기 때문에, 누락할 가능성을 원천 차단
+
+## 🔹final 키워드
+
+```java
+@Component
+public class OrderServiceImpl implements OrderService {
+    
+     private final MemberRepository memberRepository;
+     private final DiscountPolicy discountPolicy;
+    
+     @Autowired
+     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+     	this.memberRepository = memberRepository;
+     }
+     //...
+}
+```
+
+- 생성자 주입을 사용하면 필드에 ```final``` 키워드를 사용할 수 있다. 그래서 생성자에서 혹시라도 값이 설정되지 않는 오류를 컴파일 시점에 막아준다
+- 잘 보면 필수 필드인 ```discountPolicy``` 에 값을 설정해야 하는데, 이 부분이 누락되었다. 자바는 컴파일 시점에 다음 오류를 발생시킨다
+- ```java: variable discountPolicy might not have been initialized```
+- 기억하자! 컴파일 오류는 세상에서 가장 빠르고, 좋은 오류다!
+
+> **참고**
+>
+> 수정자 주입을 포함한 나머지 주입 방식은 모두 생성자 이후에 호출되므로, 필드에 final 키워드를 사용 할 수 없다. 
+>
+> 오직 생성자 주입 방식만 final 키워드를 사용할 수 있다
+
+## 🔹정리
+
+- 생성자 주입 방식을 선택하는 이유는 여러가지가 있지만, 프레임워크에 의존하지 않고, 순수한 자바 언어의 특징 을 잘 살리는 방법이기도 하다. 
+- 기본으로 생성자 주입을 사용하고, 필수 값이 아닌 경우에는 수정자 주입 방식을 옵션으로 부여하면 된다. 생성자 주입과 수정자 주입을 동시에 사용할 수 있다. 
+- 항상 생성자 주입을 선택해라! 그리고 가끔 옵션이 필요하면 수정자 주입을 선택해라. 필드 주입은 사용하지 않는 게 좋다
+
+<br>
+
+<br>
+
+<br>
+
+# <span style="color: #D6ABFA;">⚪롬복 라이브러리</span>
+
+어노테이션만 추가해주는 것으로
+
+getter, setter등을 자동으로 추가해 줘서 코드가 깔끔해지고
+
+생성자주입도 자동으로 구현해주는등 여러모로 편리해서 사용을 많이 함
+
+## 🔹적용 방법
+
+### 🔸build.gradle에 라이브러리 및 환경 추가
+
+```groovy
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'hello'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '21'
+}
+
+//lombok 설정 추가 시작
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+//lombok 설정 추가 끝
+
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+
+	//lombok 라이브러리 추가 시작
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	//lombok 라이브러리 추가 끝
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+```
+
+### 🔸file-setting-plugins에 Lombok 추가
+
+![image-20231221180252684](./../../assets/images/2023-12-13-SpringDiAuto/image-20231221180252684.png)
+
+### 🔸Preferences -> Annotation Processors 검색 -> Enable annotation processing 체크 (재시작)
+
+![image-20231221180709884](./../../assets/images/2023-12-13-SpringDiAuto/image-20231221180709884.png)
+
+### 🔸@Getter, @Setter 사용되는지 확인
+
+<br>
+
+## 🔹유용한 사용법
+
+```java
+Component
+public class OrderServiceImpl implements OrderService {
+    
+     private final MemberRepository memberRepository;
+     private final DiscountPolicy discountPolicy;
+
+     //@Autowired  생성자가 1개이기 때문에 생략 가능
+     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+         this.memberRepository = memberRepository;
+         this.discountPolicy = discountPolicy;
+     }
+}
+```
+
+이 코드에 롬복 라이브러리를 적용
+
+롬복 라이브러리가 제공하는 ```@RequiredArgsConstructor``` 기능을 사용하면 final이 붙은 필드를 모아서 생 성자를 자동으로 만들어준다. 
+ (다음 코드에는 보이지 않지만 실제 호출 가능하다.)
+
+<br>
+
+```java
+@Component
+@RequiredArgsConstructor
+public class OrderServiceImpl implements OrderService {
+     private final MemberRepository memberRepository;
+     private final DiscountPolicy discountPolicy;
+}
+```
+
+- 이 최종결과 코드와 이전의 코드는 완전히 동일하다
+
+- 롬복이 자바의 애노테이션 프로세서라는 기능을 이용해서 컴파일 시점에 생성자 코드를 자동으로 생성해준다
+
+- 실제 ```class``` 를 열어보면 다음 코드가 추가되어 있는 것을 확인할 수 있다
+
+  ```java
+  public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+       this.memberRepository = memberRepository;
+       this.discountPolicy = discountPolicy;
+  }
+  ```
+
+## 🔹정리
+
+최근에는 생성자를 딱 1개 두고, @Autowired 를 생략하는 방법을 주로 사용한다. 
+
+여기에 Lombok 라이브러리의 @RequiredArgsConstructor 함께 사용하면 기능은 다 제공하면서, 코드는 깔끔하게 사용할 수 있다
+
+<br>
+
+<br>
+
+<br>
+
+# <span style="color: #D6ABFA;">⚪의존관계 자동주입때 중복 처리</span>
+
+스프링 빈을 수동등록해서 문제를 해결해도 되지만, 의존 관계 자동 주입에서 해결하는 방법
+
+```java
+@Autowired
+private DiscountPolicy discountPolicy
+```
+
+```@Autowired```는 타입으로 조회하기 떄문에 DiscountPolicy의 구현체인 FixDiscountPolicy , RateDiscountPolicy 둘다 스프링 빈으로 등록되어 있을 경우 ```NoUniqueBeanDefinitionException``` 오류가 발생함
+
+
+
+## 🔹@Autowired 필드,파라미터 명 매칭
+
+```@Autowired```는 타입 매칭을 시도하고, 이때 여러 빈이 있으면 필드 이름, 파라미터 이름으로 빈 이름을 추가 매칭함
+
+**기존 코드**
+
+```java
+@Autowired
+private DiscountPolicy discountPolicy
+```
+
+**필드명을 빈 이름으로 변경**
+
+```java
+@Autowired
+private DiscountPolicy rateDiscountPolicy
+```
+
+> 타입 매칭을 먼저 한 결과가 2개 이상일때만 필드,파라미터 명으로 빈을 매칭함
+
+## 🔹@Qualifier 사용
+
+추가 구분자를 붙여주는 방법
+
+주입시 추가적인 방법을 제공하는 것이지 빈 이름을 변경하는 것은 아님
+
+**빈 등록시 @Qualifier를 붙여 준다**
+
+```java
+@Component
+@Qualifier("mainDiscountPolicy")
+public class RateDiscountPolicy implements DiscountPolicy {}
+
+
+@Component
+@Qualifier("fixDiscountPolicy")
+public class FixDiscountPolicy implements DiscountPolicy {}
+
+
+//직접 빈 등록시에도 동일하게 사용 간으
+@Bean
+@Qualifier("mainDiscountPolicy")
+public DiscountPolicy discountPolicy() {
+	return new ...
+}
+```
+
+**주입시에 @Qualifier를 붙여주고 등록한 이름을 적어준다**
+
+```java
+//생성자 자동 주입 예시
+@Autowired
+public OrderServiceImpl(MemberRepository memberRepository, @Qualifier("mainDiscountPolicy") DiscountPolicy 		discountPolicy) {
+     this.memberRepository = memberRepository;
+     this.discountPolicy = discountPolicy;
+}
+
+
+//수정자 자동 주입 예시
+@Autowired
+public DiscountPolicy setDiscountPolicy(@Qualifier("mainDiscountPolicy") DiscountPolicy discountPolicy) {
+     this.discountPolicy = discountPolicy;
+}
+```
+
+<br>
+
+```@Qualifier``` 로 주입할 때 ```@Qualifier("mainDiscountPolicy")```를 못찾으면 어떻게 될까? 
+
+그러면  mainDiscountPolicy라는 이름의 스프링 빈을 추가로 찾는다. 
+
+하지만 경험상 ```@Qualifier``` 는 ```@Qualifier``` 를 찾는 용도로만 사용하는게 명확하고 좋다
+
+> 1. @Qualifier끼리 매칭
+> 2. @Qualifier에 문자로 빈 이름 검색
+> 3. NoSuchBeanDefinitionException 예외 발생
+
+## 🔹@Primary 사용
+
+```@Autowired```을 썼을때 여러 빈이 매칭되면 ```@Primary```가 우선권을 가진다
+
+<br>
+
+**rateDiscountPolicy** 가 우선권을 가지도록 한 예시
+
+```java
+@Component
+@Primary
+public class RateDiscountPolicy implements DiscountPolicy {}
+
+
+@Component
+public class FixDiscountPolicy implements DiscountPolicy {}
+```
+
+**사용 코드**
+
+```java
+//생성자
+@Autowired
+public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+     this.memberRepository = memberRepository;
+     this.discountPolicy = discountPolicy;
+}
+
+//수정자
+@Autowired
+public DiscountPolicy setDiscountPolicy(DiscountPolicy discountPolicy) {
+ 	this.discountPolicy = discountPolicy;
+}
+```
+
+## 🔹@Primary, @Qualifier 활용
+
+코드에서 자주 사용하는 메인 데이터베이스의 커넥션을 획득하는 스프링 빈이 있고, 코드에서 특별한 기능으로 가끔 사용하는 서브 데이터베이스의 커넥션을 획득하는 스프링 빈이 있다고 생각해보자. 
+
+메인 데이터베이스의 커넥션을 획득하는 스프링 빈은 ```@Primary``` 를 적용해서 조회하는 곳에서 ```@Qualifier``` 지정 없이 편리하게 조회하고, 서브 데이터베이스 커넥션 빈을 획득할 때는 ```@Qualifier``` 를 지정해서 명시적으로 획득 하는 방식으로 사용하면 코드를 깔끔하게 유지할 수 있다. 
+
+물론 이때 메인 데이터베이스의 스프링 빈을 등록할 때 ```@Qualifier``` 를 지정해주는 것은 상관없다
+
+## 🔹@Primary, @Qualifier우선 순위
+
+```@Primary``` 는 기본값 처럼 동작하는 것이고, ```@Qualifier``` 는 매우 상세하게 동작한다. 
+
+이런 경우 어떤 것이 우선권을 가져갈까? 
+
+스프링은 자동보다는 수동이, 넒은 범위의 선택권 보다는 좁은 범위의 선택권이 우선 순위가 높다. 
+
+따라서 여기서도 ```@Qualifier``` 가 우선권이 높다
+
+## 🔹애노테이션 직접 만들기 
+
+@Qualifier("mainDiscountPolicy") 이렇게 문자를 적으면 컴파일시 타입 체크가 안된다. 
+
+다음과 같은 애노테이션을 만들어서 문제를 해결할 수 있다.
+
+```java
+//사용자 정의 애노테이션 생성
+@Target({ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE, ElementType.ANNOTATION_TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+@Documented
+@Qualifier("mainDiscountPolicy")
+public @interface MainDiscountPolicy {
+}
+
+
+```
+
