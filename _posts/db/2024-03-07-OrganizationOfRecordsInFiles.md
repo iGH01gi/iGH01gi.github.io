@@ -1,5 +1,5 @@
 ---
-title: "[DB] Record들이 File속에서 구성되는 방법들"
+title: "[DB] Record들이 File속 블록들내에서 구성되는 방법들"
 categories: Db
 toc: true
 toc_sticky: true
