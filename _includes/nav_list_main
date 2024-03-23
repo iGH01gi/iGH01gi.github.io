@@ -27,6 +27,9 @@
                     {% if category[0] == "Network" %}
                         <li><a href="/categories/Network" class="nav__sub-title-link">네트워크({{category[1].size}})</a></li>
                     {% endif %}
+                    {% if category[0] == "Algorithm" %}
+                        <li><a href="/categories/Algorithm" class="nav__sub-title-link">알고리즘({{category[1].size}})</a></li>
+                    {% endif %}
                 {% endfor %}
             </ul>
        <span class="nav__sub-title"><i class="fa-solid fa-server"></i> Backend</span>
