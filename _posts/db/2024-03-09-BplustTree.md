@@ -212,3 +212,29 @@ merging을 먼저 시도하고, 불가능하다면 redistribution을 시도
 - 실제로는 I/O작업의 횟수는 더 적음
   - 내부 노드가 버퍼에 있는 경향이 있고
   - split과 merge는 드물게 발생하고, 대부분의 insert,delete 작업은 리프노드에만 영향을 끼치기 때문
+
+<br>
+
+<br>
+
+<br>
+
+# ⚪<span style="color: #D6ABFA;">B - Tree와의 차이</span>
+
+![image-20240417120721385](../../assets/images/2024-03-09-BplustTree/image-20240417120721385.png)
+
+- B - Tree는 search-key 값을 중복 없이 한번만 등장하게 함
+- ![image-20240417121054166](../../assets/images/2024-03-09-BplustTree/image-20240417121054166.png)  
+  non-leaf node에도 search-key에 해당하는 실제 레코드(bucket or file record) 포인터 정보를 추가적으로 들고 있음
+
+## 🔹B - Tree 장점
+
+- B+ - Tree에 비해서 적은 노드를 사용 가능함
+- 가끔 leaf node에 도달하기 전에 search-key를 찾아서 레코드 접근 가능
+
+## 🔹B - Tree 단점
+
+- search-key가 일찍 찾아지는건 매우 일부분임
+- non-leaf node가 더 크기 때문에 fan-out(자식 수)가 상대적으로 적어서 depth가 더 커지게 됨
+- 삽입 삭제가 더 복잡하고, 범위 질의문같은걸 처리할때 리프노드만 쭉 보면 되는 B+ Tree와 달리 상대적으로 복잡한 과정을 거쳐야 함
+- 보통 이러한 단점이 장점을 상쇄할 정도로 크다고 여겨짐
