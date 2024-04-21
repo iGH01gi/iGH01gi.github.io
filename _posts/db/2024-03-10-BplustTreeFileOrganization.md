@@ -15,7 +15,7 @@ last_modified_at: 2024-03-10
 ![image-20240416044638619](../../assets/images/2024-03-09-BplustTreeFileOrganization/image-20240416044638619.png)
 
 - **리프노드**에 레코드에 대한 포인터가 아닌, **실제 레코드 값 자체**를 저장하는 경우
-- insertion, deletioni, update가 발생해도 data records가 clustered 되도록 할 수 있음. 당연히 clustered index가 됨
+- insertion, deletion, update가 발생해도 data records가 clustered 되도록 할 수 있음. 당연히 clustered index가 됨
 -  <img src="../../assets/images/2024-03-09-BplustTreeFileOrganization/image-20240416050012278.png" alt="이미지" width="50%">  
   [sequential file](https://igh01gi.github.io/db/OrganizationOfRecordsInFiles/#sequential){:target="_blank"}방식을 사용하여 데이터파일 따로 B+ 인덱스 파일 따로하여 Clustered index를 구현하는 방식은,   
   sequential file의 특성상 레코드의 논리적 순서와 물리적 순서가 일치하지 않게 되어, 때때로 reorganization을 해서 그 둘의 순서를 맞춰주는데 이는 부담이 되는 작업임
