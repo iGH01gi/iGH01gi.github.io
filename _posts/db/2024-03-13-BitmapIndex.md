@@ -31,7 +31,7 @@ last_modified_at: 2024-03-13
 
 - 레코드 수: n
 - Relation 크기(bit) : n * 100 bytes = 800n bits
-- Bitmap index 크기 :8 * n bits
+- Bitmap index 크기 :8(distinct attribute 개수) * n bits
 
  bitmap index는 8n/800n = 1% , 즉 테이블 크기 대비 1%의 공간으로 표현 가능함
 
