@@ -6,8 +6,8 @@ toc_sticky: true
 //author_profile: false 왼쪽에 따라다니는거 키고끄기
 layout: single
 show_Date: true
-date: 2024-06-09
-last_modified_at: 2024-06-09
+date: 2024-06-02
+last_modified_at: 2024-06-02
 ---
 
 # ⚪<span style="color: #D6ABFA;">expression tree</span>
