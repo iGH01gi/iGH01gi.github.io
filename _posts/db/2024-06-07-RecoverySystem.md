@@ -121,3 +121,30 @@ undo와 redo는 복구작업을 하는 기본 연산 (로그를 바탕으로)
   - <T<sub>i</sub>, start>로 시작도 했고 <T<sub>i</sub>, commit> 또는 <T<sub>i</sub>, abort>로 결말이 난 트랜잭션은 redo의 대상
   - **buffer에 다시 재현해놓는 것 까지가 redo**임. disk에는 어떤 값이 들어있을지 모름
   - 로그를 남기지 않음
+
+<br>
+
+<br>
+
+<br>
+
+# ⚪<span style="color: #D6ABFA;">Checkpoints</span>
+
+db 시스템이 오래 작동하면 로그 내용이 매우 길어질 것임
+
+그 모든 로그를 redo/undo 하는 것은 매우 느릴 것임
+
+시간적으로 아주 오래전에 썼던 로그 레코드를 redo하는 등의 작업은 필요없을 가능성이 높아질것임
+
+<br>
+
+따라서 이런 문제점을 해결하기위해서 db시스템은 **주기적으로 checkpointing**을 실행함
+
+1. 현재 메인메모리(로그 버퍼)에 있는 모든 로그 레코드들을 stable storage로 output함
+2. 메모리 버퍼의 업데이트된 페이지들을 disk로 output함 (=이미 commit된 트랜잭션을 redo하지 않아도 되게 됨)
+3. `<checkpoint L`>이라는 체크포인트를 했다는 로그 레코드를 write함. L은 체크포인트를 수행하던 시점에 active한 상태로 있던 트랜잭션들의 list를 뜻함
+4. 체크포인팅을 하는중에는 active한 트랜잭션들이 수행하던 모든 업데이트들이 중단됨
+
+<br>
+
+![image-20240612052708966](../../assets/images/2024-06-07-RecoverySystem/image-20240612052708966.png){: width="50%"}
