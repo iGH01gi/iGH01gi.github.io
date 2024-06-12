@@ -148,3 +148,84 @@ db 시스템이 오래 작동하면 로그 내용이 매우 길어질 것임
 <br>
 
 ![image-20240612052708966](../../assets/images/2024-06-07-RecoverySystem/image-20240612052708966.png){: width="50%"}
+
+
+
+로그 끝에서부터 역방향으로 거슬러 올라가서 가장 마지막에 수행한 `<checkpoint L`> 레코드를 찾음
+
+그곳에 들어있는 그 당시 active했던 트랜잭션들 리스트 L과 체크포인트 이후에 시작된 트랜잭션들을 대상으로 redo 또는 undo를 시행하면 됨 (위 그림 기준 T<sub>2</sub>가 들어있음)
+
+체크포인트 이전에 이미 commit 또는 abort로 결론이 난 트랜잭션들은 이미 디스크로 output이 된 상태이기 때문에 무시해도 됨
+
+## 🔹Recovery Algorithm
+
+![image-20240612220437937](../../assets/images/2024-06-07-RecoverySystem/image-20240612220437937.png)
+
+- **Logging** (normal operation 일때)
+  - <T<sub>i</sub> start> 트랜잭션 시작할때
+  - <T<sub>i</sub>, X<sub>j</sub>, V<sub>1</sub>, V<sub>2</sub>> 각 업데이트 마다
+  - <T<sub>i</sub> commit> 트랜잭션이 성공적으로 끝났을때
+- **Transaction rollback** (normal operation 일때)
+  - T<sub>i</sub>를 롤백될 트랜잭션이라고 하면
+  - 로그의 마지막에서부터 거슬러올라가며 <T<sub>i</sub>, X<sub>j</sub>, V<sub>1</sub>, V<sub>2</sub>>를 발견하면 
+    - V<sub>1</sub>를 X<sub>j</sub>에 write하는 undo를 실행함
+    - <T<sub>i</sub>, X<sub>j</sub>, V<sub>1</sub>> 로그 레코드를 write함. 이런 로그 레코드를 **compensation log records**라고 함
+  - <T<sub>i</sub> start>를 찾으면 스캔을 멈추고 <T<sub>i</sub> abort> 로그 레코드를 write함
+- **Recovery from failure** (고장이 났을때 시스템을 restart하면서 시행하는 복구. 2단계로 나뉨)
+  - **Redo phase** : 고장 직전의 버퍼 상태를 재현하는 과정
+  - **Undo phase** : redo를 통해서 버퍼 상태가 재현된 후에, commit이나 abort되지 않은 미완의 트랜잭션을 undo하는 과정
+
+<br>
+
+여기서 Recovery from failure의 Redo phase와 Undo phase에 대해서 자세히 서술하겠음
+
+### 🔸Redo phase
+
+- 마지막으로 체크포인트를 수행했다는 기록인 \<checkpoint L\> 로그 레코드를 찾음
+- undo-list를 L로 초기화 함
+- \<checkpoint L\> 부터 로그의 끝까지  시간순으로 한 레코드씩 보면서 (그 이전껀 이미 디스크에 output된 것이기 때문)
+  - <T<sub>i</sub>, X<sub>j</sub>, V<sub>1</sub>, V<sub>2</sub>> 또는 <T<sub>i</sub>, X<sub>j</sub>, V<sub>2</sub>>(compensation log record)를 만나면, V<sub>2</sub>를 X<sub>j</sub>에 다시 write하여서 redo를 실행함
+  - <T<sub>i</sub> start> 로그 레코드를 만나게 되면 T<sub>i</sub>를 undo-list에 넣음
+  - <T<sub>i</sub> commit> 또는 <T<sub>i</sub> abort>가 발견되면 T<sub>i</sub>를 undo-list에서 제거함
+
+### 🔸Undo phase
+
+로그를 끝(최근)에서부터 거꾸로 스캔해 가면서 진행
+
+redo phase 이후에 진행함
+
+- <T<sub>i</sub>, X<sub>j</sub>, V<sub>1</sub>, V<sub>2</sub>> 가 발견되었고 && T<sub>i</sub>가 undo-list에 있다면:
+  - V<sub>1</sub>를 X<sub>j</sub>에 write함으로서 undo를 함
+  - <T<sub>i</sub>, X<sub>j</sub>, V<sub>1</sub>> 로그 레코드를 write함
+- <T<sub>i</sub> start> 가 발견되었고 && T<sub>i</sub>가 undo-list에 있다면:
+  - <T<sub>i</sub>, abort> 로그 레코드를 write함
+  - T<sub>i</sub>를 undo-list에서 제거함
+- undo-list가 empty하게 되면 종료
+  - undo-list에 있는 모든  트랜잭션의 <T<sub>i</sub>, start> 로그레코드가 발견되었다는 뜻
+
+undo phase가 끝난 이후에, normal transaction processing이 시작될 수 있음
+
+<br>
+
+<br>
+
+<br>
+
+# ⚪<span style="color: #D6ABFA;">Log Record Buffering</span>
+
+![image-20240612040834604](../../assets/images/2024-06-07-RecoverySystem/image-20240612040834604.png){: width="50%"}
+
+- 로그 레코드들은 디스크에 바로 output되는 것이 아닌 메인메모리의 로그버퍼에 저장됨
+- 로그 레코드들이 **stable storage로 output되는 경우**는 크게 2가지로 나뉨
+  - 로그 버퍼 페이지가 가득 찼을때
+  - **log force** operation이 실행될때. (log force는 언제 실행되는가? 아래 2가지)
+    - **WAL(write-ahead logging)**을 지켜야 할때
+    - **트랜잭션이 commit**할때 (commit record를 포함해서 output됨)
+- 로그 레코드들은 stable storage로 output될때 그들이 생성된 순서를 지켜서 output되어야 함
+- 트랜잭션 T<sub>i</sub>는 <T<sub>i</sub> commit> 로그 레코드가 stable storage로 output된 이후에서야 commit state로 진입할 수 있음.   
+  (=commit전에 로그 레코드를 먼저 output해야 한다는 뜻)
+- **커밋 안된 data를 stable storage로 output**할때는 해당 **로그 레코드를 반드시 먼저 stable storage로 ooutput**해야 함  
+  이를 **write-ahead logging** 또는 **WAL** 이라고 부름
+  - undo에 대한 정보를 확보하기 위해서 존재하는 규칙임
+  - 위 그림에서는 데이터 C가 T<sub>1</sub> 이 commit되기도 전에 output되는것으로 보이는데 C가 output되기 전에 그 이전 로그 레코드들도 디스크로 output해야 한다는 것임 (<T<sub>1</sub> start>와 <T<sub>1</sub>, C, 700, 600>. 그 이전것은 커밋하면서 이미 output된 상태)
+
