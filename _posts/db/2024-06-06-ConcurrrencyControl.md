@@ -125,7 +125,7 @@ Lock-compatibility matrix는 위와 같음
 
 ## 🔹Deadlock Recovery
 
-데드락이 발견도디면 사이클을 형성하고 있는 노드 하나를 victim(희생자)로 선정해서 abort시킴(roll back됨)
+데드락이 발견되면 사이클을 형성하고 있는 노드 하나를 victim(희생자)로 선정해서 abort시킴(roll back됨)
 
 그럼 해당 트랜잭션이 가지고 있던 락이 풀어지게 되고, 데드락 상황이 해소됨
 
