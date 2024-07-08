@@ -145,7 +145,6 @@ body {
     font-size: 0.8em;
     background: $code-background-color;
     border-radius: $border-radius;
-    color: white;
 
     &::before,
     &::after {
@@ -541,7 +540,7 @@ body {
   }
 
   a {
-    color: gray;
+    color: inherit;
     text-decoration: none;
   }
 }

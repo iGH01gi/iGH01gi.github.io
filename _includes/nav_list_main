@@ -5,8 +5,8 @@
 
 <nav class="nav__list">
 <script src="https://kit.fontawesome.com/11f59feb26.js" crossorigin="anonymous"></script>
-  <style>.nav__sub-title {font-size: 16px; color: #fff; text-transform: none;}</style>
-  <style>.nav__sub-title-link{font-size: 13px; color: #fff}</style>
+  <style>.nav__sub-title {font-size: 16px; text-transform: none;}</style>
+  <style>.nav__sub-title-link{font-size: 13px;}</style>
   <input id="ac-toc" name="accordion-toc" type="checkbox" />
   <label for="ac-toc">{{ site.data.ui-text[site.locale].menu_label }}</label>
   <ul class="nav__items" id="category_tag_menu">
