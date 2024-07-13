@@ -18,6 +18,9 @@
       <span class="nav__sub-title"><i class="fa-solid fa-book"></i> CS </span>
             <ul>
                 {% for category in site.categories %}
+                    {% if category[0] == "ComputerArchitecture" %}
+                        <li><a href="/categories/ComputerArchitecture" class="nav__sub-title-link">컴퓨터 구조({{category[1].size}})</a></li>
+                    {% endif %}
                     {% if category[0] == "Os" %}
                         <li><a href="/categories/Os" class="nav__sub-title-link">운영체제({{category[1].size}})</a></li>
                     {% endif %}
