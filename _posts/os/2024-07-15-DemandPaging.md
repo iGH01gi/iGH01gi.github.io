@@ -108,3 +108,87 @@ temporal locality는 최근에 사용된 놈이 다시 사용될 가능성이 �
 2) address space를 많은 프로세스들과 공유 가능해진다. (demand paging)
 3) 더 많은 프로세스를 메모리를 효율적으로 관리하며 돌릴 수 있다.
 4) 원래는 프로세스가 사용하는 모든 메모리가 다 main memory에 올라와야 하는데, VM쓰면 필요한 부분만 불러오기가 가능해진다.
+
+
+
+가상메모리에 관한 자세한 내용은 [링크](https://igh01gi.github.io/os/VirtualMemory/){:target="_blank"}
+
+<br>
+
+<br>
+
+<br>
+
+# ⚪<span style="color: #D6ABFA;">**Shared Memory in VM**</span>
+
+VM 시스템에서 메모리를 share 하는것은 굉장히 간단함.
+
+![img](../../assets/images/2024-07-15-DemandPaging/img.png){: width="50%"}
+
+위의 그림처럼 두 프로세스가 하나의 메모리를 공유할 때, 각각의 LA(Logical Address)가 하나의 PA(Physical Address)를 가리키면 간단하게 공유가 된다.
+
+ 
+
+![img](../../assets/images/2024-07-15-DemandPaging/img-1720986459514-44.png){: width="50%"}
+
+참고로 운영체제가 담겨있는 메모리 영역은 모든 프로세스가 공유하고 있다. 각 프로세스가 운영체제 프로그램이 저장된 page frame을 동시에 참조하고 있다.
+
+<br>
+
+<br>
+
+<br>
+
+# ⚪<span style="color: #D6ABFA;">**Copy-on-Write**</span>
+
+Copy-on-Write는 VM(Virtual Memory) 시스템에서 process fork 할 경우 쓰는 방법이다.
+
+ 
+
+fork 할 때, 프로세스의 모든 메모리를 복사하면 오버헤드가 너무 크고, shared 하면 독립적으로 메모리가 동작하지 못한다. 그래서 고안해낸 방법이 CoW이다.
+
+ 
+
+CoW는 우선 fork를 하면, 동일한 메모리 페이지를 공유도록 복사하고  
+해당 Logical memory의 write permission을 끈다.   
+이후에 만약 그 Logical memory에 두 프로세스 중 누군가가 write 하려하면 그제서야 새로운 Physical memory를 할당해주는 방법이다.
+
+<br>
+
+![img](../../assets/images/2024-07-15-DemandPaging/img-1720987270835-50.png){: width="50%"}
+
+fork()를 막 할 시점에, Process A의 페이지 테이블을 보면 RW권한인 것도 있고 R권한인 것도 있음.
+
+<br>
+
+![img](../../assets/images/2024-07-15-DemandPaging/img-1720987218325-47.png){: width="50%"}
+
+fork를 하면 부모와 자식 프로세스의 페이지 **테이블 엔트리(PTE)는 동일한 물리 메모리 주소**를 가리키게 됨.
+
+모든 이 공유된 페이지는  "**읽기 전용(Read Only)**" 으로 설정됨.
+
+<br>
+
+![img](../../assets/images/2024-07-15-DemandPaging/img-1720987495520-53.png){: width="50%"}
+
+부모나 자식 프로세스 중 하나가 공유된 페이지에 쓰기 작업을 시도하면, 페이지 폴트가 발생함
+
+<br>
+
+![img](../../assets/images/2024-07-15-DemandPaging/img-1720987606806-56.png){: width="50%"}
+
+운영체제는 이 페이지 폴트를 페이지 폴트 핸들러를 통해서 처리함
+
+핸들러는 이 page fault가 권한이 없는데 접근해서 생긴 fault인지, CoW 과정에서생긴 fault인지 판단하고 상황에 따라 처리를 해줌
+
+쓰기를 시도한 프로세스는 새로운 물리 메모리 페이지를 할당받고, 기존의 공유된 페이지 내용을 새로운 페이지로 복사
+
+페이지 테이블 엔트리를 업데이트하여, 쓰기를 시도한 프로세스는 이제 새로 할당된 페이지를 가리키게 됨   
+그리고 이 페이지에 대한 쓰기 권한을 부여함
+
+다른 프로세스는 여전히 원래의 페이지를 참조
+
+<br>
+
+위와 같은 CoW 는 많이 사용된다.   
+대표적으로 malloc으로 메모리 동적 할당을 했을 때, 컴퓨터는 실제로 모든 메모리를 준비해놓는것이 아니라, CoW를 통해 모두 shared 해놓은 뒤, 필요시마다 새로 메모리를 할당해주는 식으로 동작한다.

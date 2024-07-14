@@ -165,7 +165,7 @@ VA를 보고 PA에 mapping하는 것이 아니라, 반대로 PA를 보고 VA를 
 
 ![img](../../assets/images/2023-05-07-ostest/img-1720979194628-26.png){: width="70%"}
 
-**MMU**는 CPU에 코드 실행시, **가상 주소 메모리 접근이 필요할 때, 해당 주소를 물리 주소값으로 변환**해주는 하드웨어 장치임
+**MMU**(Memory Management Unit)는 CPU에 코드 실행시, **가상 주소 메모리 접근이 필요할 때, 해당 주소를 물리 주소값으로 변환**해주는 하드웨어 장치임
 
 그러나 항상 MMU가 메모리를 접근해야하면 비효율적이기 때문에, **캐싱을 위해서 TLB(Translation Look-aside Buffer)**를 사용함
 
