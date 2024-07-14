@@ -1,7 +1,7 @@
 ---
 title: 가상 메모리
 
-categories: ComputerArchitecture
+categories: Os
 
 toc: true
 toc_sticky: true
@@ -11,6 +11,7 @@ layout: single
 show_Date: true
 date: 2024-07-14
 last_modified_at: 2024-07-14
+
 ---
 
 # ⚪<span style="color: #D6ABFA;">가상 메모리란</span>
@@ -44,7 +45,7 @@ last_modified_at: 2024-07-14
 
 <br>
 
-![img](../../assets/images/2024-07-14-VirtualMemory/img.png){: width="50%"}
+![img](../../assets/images/2023-05-07-ostest/img.png){: width="50%"}
 
 특정 가상 주소가 어느 물리 주소에 매핑되었는지 알기 위해서 필요한 것이 **MMU(Memory Management Unit)**
 
@@ -58,7 +59,7 @@ last_modified_at: 2024-07-14
 
 # ⚪<span style="color: #D6ABFA;">페이징 시스템</span>
 
-![img](../../assets/images/2024-07-14-VirtualMemory/img-1720942693426-4.png){: width="70%"}
+![img](../../assets/images/2023-05-07-ostest/img-1720942693426-4.png){: width="70%"}
 
 - **paging :**  가상메모리와 물리메모리를 동일한 크기의 블록으로 나눔. 이때 **가상메모리의 블록을 page**라고 부르고, **물리 메모리의 블록을 frame**(또는 page frame)이라고 부름. 페이지(프레임)의 크기는 2의 승수(일반적으로 4kb~16kb)
 - **page table :** **VPN**(Virtual Page Number)를 **PFN**(Pysical Frame Number)로 **매핑**  
@@ -73,7 +74,7 @@ last_modified_at: 2024-07-14
 
 page table은 OS로부터 관리되고, MMU가 접근해서 읽는 구조임.
 
-![img](../../assets/images/2024-07-14-VirtualMemory/img-1720945167644-7.png){: width="70%"}
+![img](../../assets/images/2023-05-07-ostest/img-1720945167644-7.png){: width="70%"}
 
 이때, 각 page table의 원소 하나하나를 **page table entry(PTE)**라고 함
 
@@ -87,7 +88,7 @@ page table은 OS로부터 관리되고, MMU가 접근해서 읽는 구조임.
 
 ### 🔸Linear page table
 
-![img](../../assets/images/2024-07-14-VirtualMemory/img-1720950535744-10.png){: width="70%"}
+![img](../../assets/images/2023-05-07-ostest/img-1720950535744-10.png){: width="70%"}
 
 그냥 모든 Virtual Address의 page를 순서대로 다 담아놓은 page table이다. 
 
@@ -125,7 +126,7 @@ page table은 OS로부터 관리되고, MMU가 접근해서 읽는 구조임.
 
 ### 🔸Hierarchy page table
 
-![img](../../assets/images/2024-07-14-VirtualMemory/img-1720953160767-13.png){: width="70%"}
+![img](../../assets/images/2023-05-07-ostest/img-1720953160767-13.png){: width="70%"}
 
 Linear page table의 문제를 해결하기 위해서 '안쓰는 page table은 할당하지 않고 있다가 필요할때만 할당하면 되지 않을까?' 라는 생각이 든다. 
 
@@ -135,7 +136,7 @@ Linear page table의 문제를 해결하기 위해서 '안쓰는 page table은 �
 
 위와 같은 경우, **사용하지 않는 page의 경우, page table을 만들지 않아도 되고**, outer page table로 손쉽게 관리할 수 있다는 장점이 있다.
 
-![img](../../assets/images/2024-07-14-VirtualMemory/img-1720953434407-16.png){: width="70%"}
+![img](../../assets/images/2023-05-07-ostest/img-1720953434407-16.png){: width="70%"}
 
 **PTBR(Page Table Base Register)**에서 outer page table의 시작 주소를 갖고오고,   
 VA의 P1값을 사용해서 해당하는 page table의 시작 주소를 얻고,   
@@ -160,7 +161,9 @@ VA를 보고 PA에 mapping하는 것이 아니라, 반대로 PA를 보고 VA를 
 
 # ⚪<span style="color: #D6ABFA;">MMU와 TLB</span>
 
-![img](../../assets/images/2024-07-14-VirtualMemory/img-1720955667688-23.png){: width="70%"}
+![img](../../assets/images/2023-05-07-ostest/img-1720955667688-23.png){: width="70%"}
+
+![img](../../assets/images/2023-05-07-ostest/img-1720979194628-26.png){: width="70%"}
 
 **MMU**는 CPU에 코드 실행시, **가상 주소 메모리 접근이 필요할 때, 해당 주소를 물리 주소값으로 변환**해주는 하드웨어 장치임
 
