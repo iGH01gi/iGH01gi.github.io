@@ -1,5 +1,5 @@
 ---
-title: "[Algorithm] Binary Search (lower,upper bound)"
+title: "[Algorithm] 이진 탐색(Binary Search) (lower,upper bound)"
 
 categories: Algorithm
 
