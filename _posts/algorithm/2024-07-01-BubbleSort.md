@@ -39,15 +39,23 @@ last_modified_at: 2024-07-01
 void bubbleSort(std::vector<int>& arr)
 {
     int n = arr.size();
+    bool swapped;
+
     for (int i = 0; i < n-1; i++)
     {
+        swapped = false;
         for (int j = 0; j < n-i-1; j++)
         {
             if (arr[j] > arr[j+1])
             {
                 std::swap(arr[j], arr[j+1]);
+                swapped = true;
             }
         }
+
+        // 만약 내부 반복문에서 두 요소가 교환되지 않았다면, 그 배열은 정렬된 상태
+        if (!swapped)
+            break;
     }
 }
 
@@ -84,7 +92,7 @@ int main()
 
 # ⚪<span style="color: #D6ABFA;">파생형 칵테일 정렬</span>
 
-![CocktailSort.mp4 [video-to-gif output image]](https://s2.ezgif.com/tmp/ezgif-2-f501cd3101.gif)
+![CocktailSort.mp4 [video-to-gif output image]](../../assets/images/2024-07-01-BubbleSort/ezgif-2-f501cd3101.gif)
 
 **칵테일 정렬(cocktail sort)** 또는 **셰이커 정렬(shaker sort)**라고도 하는 버블 정렬의 파생형.
 
@@ -92,3 +100,4 @@ int main()
 
 당연하겠지만 이 쪽은 마지막과 처음이 번갈아가며 정렬된다.   
 제일 처음에 하나, 제일 뒤에 하나, 다시 제일 앞에 하나, 또 제일 뒤에 하나를 정렬하면서 마치 정렬하는 과정이 앞뒤로 마구 흔드는게 칵테일을 마구 흔들어 섞는것과 비슷해보인다 하여 칵테일(혹은 이름을 합쳐서 칵테일 셰이커) 정렬이라는 이름이 붙었다.
+
