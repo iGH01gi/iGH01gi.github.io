@@ -40,12 +40,45 @@ pivot은 맨 오른쪽 값을 기준으로 하며, 이를 기준으로 2개의 �
 
 오른쪽 포인터가 pivot에 도달하게 되면, 왼쪽 포인터의 값과 pivot에 해당하는 값을 바꿈. 
 
-이렇게 계속 분할하면서 정복을 진행하여 코드 기준으로 left<right를 만족하지 않을때까지 계속 재귀로 반복되면서 정렬이 완료됨\
+이렇게 계속 분할하면서 정복을 진행하여 코드 기준으로 left<right를 만족하지 않을때까지 계속 재귀로 반복되면서 정렬이 완료됨
 
 
 
 ```cpp
+#include <vector>
 
+// 피벗을 기준으로 배열을 두 부분으로 나누는 함수. 최종적으로 피벗값이 들어간 인덱스를 리턴.(이건 위치 확정임)
+int Partition(std::vector<int>& arr, int low, int high)
+{
+    int pivot = arr[high]; // 피벗
+    int left = (low - 1); // 작은 요소의 인덱스
+
+    for (int right = low; right <= high - 1; right++)
+    {
+        // 현재 요소가 피벗보다 작거나 같으면 left를 증가시키고 arr[left]와 arr[right]를 교환
+        if (arr[right] <= pivot)
+        {
+            left++;
+            std::swap(arr[left], arr[right]);
+        }
+    }
+    std::swap(arr[left + 1], arr[high]);
+    return (left + 1);
+}
+
+// 퀵소트 메인 함수
+void QuickSort(std::vector<int>& arr, int low, int high)
+{
+    if (low < high)
+    {
+        // pi는 파티셔닝 인덱스, arr[pi]는 이제 정렬된 위치에 있음
+        int pi = Partition(arr, low, high);
+
+        // 각각 파티션을 정렬
+        QuickSort(arr, low, pi - 1);
+        QuickSort(arr, pi + 1, high);
+    }
+}
 ```
 
 > 정렬을 했을 때 중복된 값들의 순서가 변하는 **불안정(Unstable) 정렬**에 속한다
