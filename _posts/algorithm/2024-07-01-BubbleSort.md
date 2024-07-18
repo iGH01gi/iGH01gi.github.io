@@ -84,7 +84,7 @@ int main()
 
 # ⚪<span style="color: #D6ABFA;">파생형 칵테일 정렬</span>
 
-![CocktailSort.mp4 [video-to-gif output image]](../../assets/images/2024-07-18-f/ezgif-6-aacb343c24.gif)
+![CocktailSort.mp4 [video-to-gif output image]](https://s2.ezgif.com/tmp/ezgif-2-f501cd3101.gif)
 
 **칵테일 정렬(cocktail sort)** 또는 **셰이커 정렬(shaker sort)**라고도 하는 버블 정렬의 파생형.
 
