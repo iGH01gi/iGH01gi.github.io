@@ -36,6 +36,9 @@
                     {% if category[0] == "DesignPattern" %}
                         <li><a href="/categories/DesignPattern" class="nav__sub-title-link">디자인 패턴({{category[1].size}})</a></li>
                     {% endif %}
+                    {% if category[0] == "DataStructure" %}
+                        <li><a href="/categories/DataStructure" class="nav__sub-title-link">자료구조({{category[1].size}})</a></li>
+                    {% endif %}                    
                 {% endfor %}
             </ul>
        <span class="nav__sub-title"><i class="fa-solid fa-server"></i> Backend</span>
