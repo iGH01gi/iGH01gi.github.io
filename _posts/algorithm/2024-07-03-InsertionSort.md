@@ -39,7 +39,7 @@ void InsertionSort(std::vector<int>& arr)
         int j = i - 1;
 
         // arr[0..i-1]의 요소 중 key보다 큰 요소들을
-        // 그들의 현재 위치보다 한 위치 앞으로 이동시킵니다.
+        // 그들의 현재 위치보다 한 위치 뒤로 이동시킵니다.
         while (j >= 0 && arr[j] > key)
         {
             arr[j + 1] = arr[j];
@@ -61,6 +61,8 @@ int main()
     return 0;
 }
 ```
+
+> 정렬을 했을 때 중복된 값들의 순서가 유지되는 **안정(Stable) 정렬**에 속한다
 
 <br>
 
