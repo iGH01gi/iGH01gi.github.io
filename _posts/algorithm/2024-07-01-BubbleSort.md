@@ -36,7 +36,7 @@ last_modified_at: 2024-07-01
 #include <iostream>
 #include <vector>
 
-void bubbleSort(std::vector<int>& arr)
+void BubbleSort(std::vector<int>& arr)
 {
     int n = arr.size();
     bool swapped;
@@ -62,7 +62,7 @@ void bubbleSort(std::vector<int>& arr)
 int main()
 {
     std::vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
-    bubbleSort(arr);
+    BubbleSort(arr);
     std::cout << "Sorted array: \n";
     for(int i = 0; i < arr.size(); i++)
     {
