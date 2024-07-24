@@ -47,6 +47,9 @@
                     {% if category[0] == "Spring" %}
                         <li><a href="/categories/Spring" class="nav__sub-title-link">스프링({{category[1].size}})</a></li>
                     {% endif %}
+                    {% if category[0] == "Aws" %}
+                        <li><a href="/categories/Aws" class="nav__sub-title-link">AWS({{category[1].size}})</a></li>
+                    {% endif %}                    
                 {% endfor %}
             </ul>
         <!--span 태그로 카테고리들을 크게 분류 ex) C/C++/C#-->
