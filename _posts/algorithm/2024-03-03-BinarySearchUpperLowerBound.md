@@ -153,7 +153,7 @@ public int UpperBound(int data[], int value)
 
 ```c++
 //value보다 처음으로 이상인 값이 나오는 index를 반환 (만약 마지막 인덱스+1 이라면 value이상인 값이 없다는 것)
-public int UpperBound(int data[], int value) 
+public int LowerBound(int data[], int value) 
 {
     int left = 0;
     int right = data.length; //마지막 인덱스+1 과 동일
