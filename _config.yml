@@ -18,9 +18,9 @@ minimal_mistakes_skin    : "default" # "custom" "default" # "air", "aqua", "cont
 locale                   : "ko-KR"
 title                    : "Brain Backup"
 title_separator          : "|"
-subtitle                 : "게임 서버개발자(진)"
+subtitle                 : "게임 개발자(진)"
 name                     : "igeonho"
-description              : "백엔드개발자 지망생"
+description              : "게임개발자 지망생"
 url                      : "https://igh01gi.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "iGH01gi/Comments" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : "이건호"
   avatar           : /assets/images/setting/ighRabbit.png # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "게임서버 개발자(진)"
+  bio              : "게임 개발자(진)"
   #location         : "South Korea"
   #email            : "iGH01pr@outlook.com"
   links:
