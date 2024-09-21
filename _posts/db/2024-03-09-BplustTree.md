@@ -12,7 +12,7 @@ last_modified_at: 2024-03-09
 
 # ⚪<span style="color: #D6ABFA;">왜 사용하는가</span>
 
-DB시템에서 인덱스를 저장할 때 가장 많이 사용하는 것이 **B+-Tree 인덱스 파일**임
+DB시스템에서 인덱스를 저장할 때 가장 많이 사용하는 것이 **B+-Tree 인덱스 파일**임
 
 - [indexed-sequential files](https://igh01gi.github.io/db/Index/#index-sequential-file)은 파일 크기가 커질수록 overflow block들이 생성되기때문에 성능이 안좋아짐. 따라서 주기적으로 전체 파일의 재조직이 필요함
 - 이러한 단점을 줄이고자 대부분 B+ tree를 이용해서 index files을 생성하는데
